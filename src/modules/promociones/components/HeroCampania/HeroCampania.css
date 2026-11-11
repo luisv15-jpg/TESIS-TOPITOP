@@ -1,0 +1,132 @@
+.hero-campania {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--fondo);
+  isolation: isolate;
+}
+
+.hero-campania__foto {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 64% 100%;
+}
+
+.hero-campania__lienzo {
+  position: relative;
+  height: 100%;
+  max-width: var(--lienzo);
+  margin-inline: auto;
+}
+
+.hero-campania__titulo {
+  position: absolute;
+  top: calc(var(--header-h) + 20px);
+  left: calc(var(--gutter) - 0.04em);
+  margin: 0;
+  color: var(--rojo-cyber);
+  font-size: clamp(48px, 15vw, 96px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+}
+
+.hero-campania__linea {
+  display: block;
+}
+
+.hero-campania .hero-campania__bajar {
+  position: absolute;
+  bottom: 24px;
+  left: calc(50% - 24px);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--tinta);
+  color: var(--gris-flecha);
+  font-size: 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition:
+    transform var(--dur-rapida) var(--ease-salida),
+    color var(--dur-rapida) var(--ease-estandar);
+}
+
+.hero-campania .hero-campania__bajar:hover {
+  color: #1f1f1f;
+  transform: translateY(3px);
+}
+
+.hero-campania .hero-campania__bajar:active {
+  transform: translateY(3px) scale(0.94);
+}
+
+.hero-campania .hero-campania__bajar:focus-visible {
+  outline: 2px solid var(--tinta);
+  outline-offset: 4px;
+}
+
+/* Entrada única al cargar */
+.hero-campania__foto[data-enter] {
+  animation: hero-foto var(--dur-entrada) var(--ease-estandar) both;
+}
+
+.hero-campania__linea[data-enter] {
+  animation: hero-linea var(--dur-entrada) var(--ease-salida) both;
+}
+
+.hero-campania__linea[data-enter] + .hero-campania__linea[data-enter] {
+  animation-delay: 110ms;
+}
+
+@keyframes hero-foto {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-linea {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+/* Escritorio: medidas del lienzo de 1300 px del diseño */
+@media (min-width: 1100px) {
+  .hero-campania {
+    height: max(calc(560 * var(--u)), calc(100svh - var(--banda-h)));
+    min-height: 0;
+  }
+
+  .hero-campania__foto {
+    object-position: 50% 100%;
+  }
+
+  .hero-campania__titulo {
+    top: auto;
+    bottom: calc(228.7 * var(--u));
+    left: calc(40 * var(--u));
+    font-size: calc(112 * var(--u));
+    line-height: calc(115 * var(--u));
+    letter-spacing: 0.44em;
+  }
+
+  .hero-campania .hero-campania__bajar {
+    bottom: calc(21 * var(--u));
+    left: calc(637 * var(--u));
+    width: calc(50 * var(--u));
+    height: calc(50 * var(--u));
+    font-size: calc(24 * var(--u));
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,254 @@
+.banda-cupon {
+  position: relative;
+  overflow: hidden;
+  background: var(--fondo-banda);
+  color: var(--tinta);
+  text-transform: uppercase;
+  isolation: isolate;
+}
+
+.banda-cupon:focus {
+  outline: none;
+}
+
+.banda-cupon__fondo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.banda-cupon__contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 56px var(--gutter) 64px;
+  text-align: center;
+}
+
+.banda-cupon__regalo,
+.banda-cupon__cupon {
+  margin: 0;
+}
+
+.banda-cupon__regalo > *,
+.banda-cupon__cupon > * {
+  display: block;
+  margin: 0;
+}
+
+.banda-cupon__antetitulo {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.banda-cupon__monto {
+  margin-block: 2px;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.banda-cupon__beneficio {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.banda-cupon__divisor {
+  display: block;
+  flex: none;
+  width: 56px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.banda-cupon__codigo {
+  display: inline-block;
+  min-height: 44px;
+  margin: 10px 0;
+  padding: 0 18px;
+  border: 0;
+  background: var(--rojo-cyber);
+  color: var(--tinta);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    transform var(--dur-rapida) var(--ease-salida),
+    background-color var(--dur-rapida) var(--ease-estandar);
+}
+
+.banda-cupon__codigo:hover {
+  background: #e00000;
+  transform: translateY(-2px);
+}
+
+.banda-cupon__codigo:active {
+  transform: scale(0.96);
+}
+
+.banda-cupon__destino {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.banda-cupon__legal {
+  margin-top: 6px;
+  color: var(--tinta-suave);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Escritorio: medidas del lienzo de 1300 px del diseño */
+@media (min-width: 1100px) {
+  .banda-cupon {
+    height: var(--banda-h);
+  }
+
+  .banda-cupon__contenido {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0;
+    height: 100%;
+    max-width: var(--lienzo);
+    margin-inline: auto;
+    padding: 0 calc(24 * var(--u)) 0 0;
+  }
+
+  .banda-cupon__regalo,
+  .banda-cupon__cupon {
+    flex: none;
+    width: calc(236 * var(--u));
+  }
+
+  .banda-cupon__regalo {
+    margin-right: calc(69 * var(--u));
+    transform: translateY(calc(-2 * var(--u)));
+  }
+
+  .banda-cupon__cupon {
+    margin-left: calc(58 * var(--u));
+    transform: translateY(calc(5.5 * var(--u)));
+  }
+
+  .banda-cupon__antetitulo {
+    font-size: max(11px, calc(14.5 * var(--u)));
+    line-height: calc(20 * var(--u));
+  }
+
+  .banda-cupon__monto {
+    margin-block: 0;
+    font-size: calc(36 * var(--u));
+    line-height: calc(40 * var(--u));
+  }
+
+  .banda-cupon__beneficio {
+    font-size: calc(19.5 * var(--u));
+    line-height: calc(24 * var(--u));
+  }
+
+  .banda-cupon__divisor {
+    width: max(1px, calc(1.5 * var(--u)));
+    height: calc(90 * var(--u));
+  }
+
+  .banda-cupon .ticket-descuento {
+    margin-inline: calc(28 * var(--u)) calc(25 * var(--u));
+    transform: translateY(calc(-6.5 * var(--u)));
+  }
+
+  .banda-cupon__codigo {
+    min-height: 0;
+    height: calc(23 * var(--u));
+    margin: calc(7 * var(--u)) 0 calc(6 * var(--u));
+    padding: 0 calc(10 * var(--u));
+    font-size: max(11px, calc(14.5 * var(--u)));
+    line-height: calc(23 * var(--u));
+  }
+
+  .banda-cupon__destino {
+    font-size: max(11px, calc(14.5 * var(--u)));
+    line-height: calc(20 * var(--u));
+  }
+
+  .banda-cupon__legal {
+    margin-top: calc(1 * var(--u));
+    font-size: max(9px, calc(9.5 * var(--u)));
+    line-height: calc(14 * var(--u));
+  }
+}
+
+/* Aviso al copiar el cupón (PrimeReact Toast sin tema) */
+.aviso-tienda.p-toast {
+  width: min(360px, calc(100vw - 32px));
+  font-family: var(--fuente);
+  text-transform: none;
+}
+
+.aviso-tienda .p-toast-message {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #111111;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.aviso-tienda .p-toast-message-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 12px 14px 16px;
+}
+
+.aviso-tienda .p-toast-message-icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: #0a7a32;
+}
+
+.aviso-tienda .p-toast-message-warn .p-toast-message-icon {
+  color: #a35a00;
+}
+
+.aviso-tienda .p-toast-message-text {
+  flex: 1;
+}
+
+.aviso-tienda .p-toast-summary {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.aviso-tienda .p-toast-detail {
+  margin: 2px 0 0;
+  color: #444444;
+  font-size: 14px;
+}
+
+.aviso-tienda .p-toast-icon-close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #444444;
+  cursor: pointer;
+}
+
+.aviso-tienda .p-toast-icon-close:hover {
+  background: rgba(0, 0, 0, 0.06);
+}

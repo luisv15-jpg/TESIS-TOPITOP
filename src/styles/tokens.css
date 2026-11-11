@@ -1,0 +1,47 @@
+/*
+  Tokens de la tienda. El diseño de referencia mide 1300 px de ancho:
+  --u equivale a 1 px de ese lienzo, para que la portada guarde sus proporciones
+  en escritorio (tope inferior 1100 px y superior 1560 px de lienzo).
+*/
+:root {
+  --u: clamp(0.846px, calc(100vw / 1300), 1.2px);
+  --lienzo: calc(1300 * var(--u));
+
+  /* Color */
+  --rojo-cyber: #fe0000;
+  --rojo-marca: #e3000f;
+  --tinta: #ffffff;
+  --tinta-suave: rgba(255, 255, 255, 0.82);
+  --tinta-tenue: rgba(255, 255, 255, 0.62);
+  --linea: rgba(255, 255, 255, 0.62);
+  --fondo: #0c0c10;
+  --fondo-elevado: #17171c;
+  --fondo-banda: #040404;
+  --gris-flecha: #636363;
+
+  /* Tipografía */
+  --fuente: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Movimiento */
+  --ease-salida: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-estandar: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-rapida: 160ms;
+  --dur-media: 260ms;
+  --dur-entrada: 700ms;
+
+  /* Capas */
+  --z-header: 10;
+  --z-skip: 2000;
+
+  /* Medidas compartidas */
+  --header-h: 64px;
+  --gutter: 16px;
+  --banda-h: auto;
+}
+
+@media (min-width: 1100px) {
+  :root {
+    --header-h: calc(126 * var(--u));
+    --banda-h: calc(173 * var(--u));
+  }
+}

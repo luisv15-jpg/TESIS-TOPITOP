@@ -1,0 +1,170 @@
+.site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+}
+
+.site-header__barra {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: var(--lienzo);
+  height: var(--header-h);
+  margin-inline: auto;
+  padding: 0 8px 0 var(--gutter);
+}
+
+.site-header__logo {
+  display: block;
+  flex: none;
+  margin-right: auto;
+  padding-block: 8px;
+  border-radius: 4px;
+}
+
+.site-header__logo img {
+  width: 92px;
+  height: auto;
+}
+
+.site-header__nav,
+.site-header__buscador {
+  display: none;
+}
+
+.site-header__accesos {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header__acceso--pedidos,
+.site-header__acceso--cuenta {
+  display: none;
+}
+
+.site-header__icono {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  color: var(--tinta);
+  font-size: 24px;
+  transition: transform var(--dur-rapida) var(--ease-salida);
+}
+
+.site-header__icono:hover {
+  transform: translateY(-2px);
+}
+
+.site-header__icono:active {
+  transform: scale(0.92);
+}
+
+.site-header .site-header__menu {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--tinta);
+  font-size: 26px;
+  transition: transform var(--dur-rapida) var(--ease-salida);
+}
+
+.site-header .site-header__menu:active {
+  transform: scale(0.92);
+}
+
+/* Escritorio: medidas del lienzo de 1300 px del diseño */
+@media (min-width: 1100px) {
+  .site-header__barra {
+    align-items: center;
+    gap: 0;
+    height: auto;
+    padding: calc(47 * var(--u)) calc(70.5 * var(--u)) 0 calc(82 * var(--u));
+  }
+
+  .site-header__logo {
+    margin-right: 0;
+    padding-block: 0;
+    transform: translateY(calc(1.5 * var(--u)));
+  }
+
+  .site-header__logo img {
+    width: calc(101.9 * var(--u));
+  }
+
+  .site-header__nav {
+    display: block;
+    margin-left: calc(68 * var(--u));
+  }
+
+  .site-header__categorias {
+    display: flex;
+    gap: calc(47.5 * var(--u));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-header__categoria {
+    position: relative;
+    display: block;
+    padding-block: calc(9 * var(--u));
+    font-size: max(12.5px, calc(13.5 * var(--u)));
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .site-header__categoria::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: calc(4 * var(--u));
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-media) var(--ease-salida);
+  }
+
+  .site-header__categoria:hover::after,
+  .site-header__categoria[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+
+  .site-header__buscador {
+    display: block;
+    width: calc(229 * var(--u));
+    margin-left: auto;
+  }
+
+  .site-header__accesos {
+    gap: calc(32 * var(--u));
+    margin-left: calc(20 * var(--u));
+  }
+
+  .site-header__acceso--pedidos,
+  .site-header__acceso--cuenta {
+    display: block;
+  }
+
+  .site-header__icono {
+    width: max(32px, calc(40 * var(--u)));
+    height: max(32px, calc(40 * var(--u)));
+    font-size: calc(22 * var(--u));
+  }
+
+  .site-header .site-header__menu {
+    display: none;
+  }
+}
