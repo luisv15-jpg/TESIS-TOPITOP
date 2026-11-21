@@ -1,0 +1,17 @@
+.precio-producto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.precio-producto__actual {
+  font-weight: 600;
+}
+
+.precio-producto__antes {
+  color: #6b6b72;
+  font-size: 0.86em;
+}

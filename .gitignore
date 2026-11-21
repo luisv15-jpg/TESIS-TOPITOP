@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Pruebas y verificaciones
+coverage
+.taste-skill
+
+# Respaldos locales (no van al repo)
+respaldos

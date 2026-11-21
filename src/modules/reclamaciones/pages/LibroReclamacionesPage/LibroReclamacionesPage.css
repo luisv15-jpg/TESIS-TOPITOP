@@ -1,0 +1,82 @@
+.reclamo__aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 24px;
+  padding: 14px 18px;
+  border-radius: var(--radio);
+  background: #fff4f4;
+  color: #5c0006;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.reclamo__aviso svg {
+  flex: none;
+  margin-top: 1px;
+  color: var(--rojo-texto);
+  font-size: 22px;
+}
+
+.reclamo__formulario {
+  display: grid;
+  gap: 20px;
+}
+
+.reclamo__par {
+  display: grid;
+  gap: 16px;
+}
+
+.reclamo__envio {
+  display: grid;
+  gap: 16px;
+}
+
+.reclamo__envio .boton-primario {
+  width: 100%;
+}
+
+.reclamo__acepta {
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.reclamo__acepta input {
+  flex: none;
+  margin-top: 2px;
+}
+
+.reclamo__confirmacion {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+}
+
+.reclamo__confirmacion p {
+  margin: 0;
+  color: #2a2a30;
+  line-height: 1.6;
+}
+
+.reclamo__check {
+  color: #0a7a32;
+  font-size: 44px;
+}
+
+.reclamo__codigo {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.reclamo__codigo:focus {
+  outline: none;
+}
+
+@media (min-width: 640px) {
+  .reclamo__par {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

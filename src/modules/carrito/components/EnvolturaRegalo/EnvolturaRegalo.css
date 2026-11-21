@@ -1,0 +1,38 @@
+/* Envoltura de regalo: casilla nativa grande y, si se marca, la dedicatoria */
+.envoltura-regalo {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px dashed rgba(23, 58, 43, 0.4);
+  border-radius: var(--radio);
+  background: #f4efe6;
+}
+
+.envoltura-regalo__opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--tinta-media);
+  font-size: 14px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.envoltura-regalo__opcion input {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 1px 0 0;
+  accent-color: var(--pino);
+  cursor: pointer;
+}
+
+.envoltura-regalo__opcion strong {
+  display: block;
+  color: var(--tinta-oscura);
+  font-size: 15px;
+}
+
+.pagina-tienda textarea.envoltura-regalo__dedicatoria {
+  min-height: 88px;
+}

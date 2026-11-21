@@ -1,9 +1,10 @@
-import { useId, useState, type FormEvent } from 'react'
+import { useId, type FormEvent } from 'react'
 import { MagnifyingGlassIcon } from '@phosphor-icons/react'
 import { IconField } from 'primereact/iconfield'
 import { InputIcon } from 'primereact/inputicon'
 import { InputText } from 'primereact/inputtext'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate, useSearchParams } from 'react-router'
+import { useValorExterno } from '@/shared/lib/useValorExterno'
 import './Buscador.css'
 
 type Props = {
@@ -12,16 +13,23 @@ type Props = {
   onBuscar?: () => void
 }
 
+const RUTA_BUSQUEDA = '/buscar'
+const LARGO_MAXIMO = 80
+
 export function Buscador({ className, onBuscar }: Props) {
   const navigate = useNavigate()
   const inputId = useId()
-  const [texto, setTexto] = useState('')
+  const { pathname } = useLocation()
+  const [parametros] = useSearchParams()
+  // En /buscar el campo muestra la consulta de la URL; en otras páginas arranca vacío.
+  const consultaActual = pathname === RUTA_BUSQUEDA ? (parametros.get('q') ?? '') : ''
+  const campoRef = useValorExterno(consultaActual)
 
   function handleSubmit(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault()
-    const consulta = texto.trim()
+    const consulta = String(new FormData(evento.currentTarget).get('q') ?? '').trim()
     if (!consulta) return
-    navigate(`/buscar?q=${encodeURIComponent(consulta)}`)
+    navigate(`${RUTA_BUSQUEDA}?q=${encodeURIComponent(consulta)}`)
     onBuscar?.()
   }
 
@@ -37,11 +45,12 @@ export function Buscador({ className, onBuscar }: Props) {
           <MagnifyingGlassIcon weight="bold" aria-hidden="true" />
         </InputIcon>
         <InputText
+          ref={campoRef}
           id={inputId}
           type="search"
           name="q"
-          value={texto}
-          onChange={(evento) => setTexto(evento.target.value)}
+          defaultValue={consultaActual}
+          maxLength={LARGO_MAXIMO}
           placeholder="Buscar productos..."
           autoComplete="off"
           enterKeyHint="search"

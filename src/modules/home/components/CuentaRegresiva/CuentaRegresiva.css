@@ -1,0 +1,88 @@
+/* Momento tipográfico de cierre: la cifra enorme sobre rojo, con hilo dorado como la banda */
+.cuenta-regresiva {
+  --anillo: var(--oro-claro);
+  padding: 72px var(--gutter);
+  border-top: 3px solid var(--oro);
+  background: var(--rojo-hover);
+  color: var(--crema);
+}
+
+.cuenta-regresiva__caja {
+  display: grid;
+  gap: 32px;
+  max-width: var(--contenido);
+  margin-inline: auto;
+}
+
+.cuenta-regresiva__titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.18em;
+  margin: 0;
+  font-weight: 800;
+  line-height: 0.9;
+}
+
+.cuenta-regresiva__numero {
+  font-size: clamp(120px, 34vw, 280px);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.cuenta-regresiva__texto {
+  font-size: clamp(30px, 7vw, 64px);
+  letter-spacing: -0.01em;
+}
+
+.cuenta-regresiva__pie {
+  display: grid;
+  gap: 24px;
+  justify-items: start;
+}
+
+.cuenta-regresiva__mensaje {
+  max-width: 48ch;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.cuenta-regresiva__accion {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: var(--radio-control);
+  background: var(--crema);
+  color: var(--rojo-hover);
+  font-size: 16px;
+  font-weight: 700;
+  transition: transform var(--dur-rapida) var(--ease-salida);
+}
+
+.cuenta-regresiva__accion:hover {
+  transform: translateY(-2px);
+}
+
+.cuenta-regresiva__accion:active {
+  transform: scale(0.97);
+}
+
+@media (min-width: 1024px) {
+  .cuenta-regresiva {
+    padding-block: 104px;
+  }
+
+  .cuenta-regresiva__caja {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    align-items: end;
+    gap: 64px;
+  }
+
+  /* Tres dígitos (más de 99 días) caben en la columna desde 1024 px */
+  .cuenta-regresiva__numero {
+    font-size: min(280px, 20vw);
+  }
+}

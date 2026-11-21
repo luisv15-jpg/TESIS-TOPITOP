@@ -7,14 +7,14 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   margin: 0;
   min-height: 100svh;
-  background: var(--fondo);
-  color: var(--tinta);
+  background: var(--pagina);
+  color: var(--tinta-oscura);
   font-family: var(--fuente);
   font-size: 16px;
   line-height: 1.5;
@@ -40,7 +40,8 @@ input {
 }
 
 :focus-visible {
-  outline: 2px solid var(--tinta);
+  /* Las zonas oscuras (encabezado sobre la foto, footer, menú) cambian --anillo a dorado */
+  outline: 2px solid var(--anillo, var(--tinta-oscura));
   outline-offset: 3px;
 }
 
@@ -62,9 +63,9 @@ input {
   left: 16px;
   z-index: var(--z-skip);
   padding: 12px 18px;
-  border-radius: 8px;
-  background: var(--tinta);
-  color: #000;
+  border-radius: var(--radio-control);
+  background: var(--tinta-oscura);
+  color: var(--crema);
   font-weight: 500;
   transform: translateY(-200%);
   transition: transform var(--dur-rapida) var(--ease-estandar);
@@ -72,7 +73,7 @@ input {
 
 .skip-link:focus-visible {
   transform: none;
-  outline-color: var(--rojo-cyber);
+  outline-color: var(--rojo-marca);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -80,8 +81,105 @@ input {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    /* Sin esto, una entrada con retraso deja el elemento invisible durante ese tiempo */
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/*
+  Secciones de la portada: misma caja (ancho y márgenes laterales iguales), misma cabecera
+  (antetítulo rojo, título y bajada) y el mismo botón de campaña.
+*/
+.seccion {
+  padding: 72px var(--gutter);
+  scroll-margin-top: 16px;
+}
+
+.seccion__caja {
+  width: 100%;
+  max-width: var(--contenido);
+  margin-inline: auto;
+}
+
+.seccion__cabecera {
+  max-width: 720px;
+  margin-bottom: 36px;
+}
+
+.seccion__antetitulo {
+  margin: 0 0 10px;
+  color: var(--rojo-marca);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.seccion__titulo {
+  margin: 0;
+  font-size: clamp(30px, 5.2vw, 52px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.seccion__bajada {
+  max-width: 56ch;
+  margin: 14px 0 0;
+  color: var(--tinta-media);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.boton-campania {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: var(--radio-control);
+  background: var(--rojo-marca);
+  color: #ffffff;
+  font-family: var(--fuente);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform var(--dur-rapida) var(--ease-salida),
+    background-color var(--dur-rapida) var(--ease-estandar);
+}
+
+.boton-campania:hover {
+  background: var(--rojo-hover);
+  transform: translateY(-2px);
+}
+
+.boton-campania:active {
+  transform: scale(0.97);
+}
+
+.boton-campania svg {
+  font-size: 20px;
+  transition: transform var(--dur-media) var(--ease-salida);
+}
+
+.boton-campania:hover svg {
+  transform: translateX(3px);
+}
+
+@media (min-width: 1024px) {
+  .seccion {
+    padding-block: 104px;
+  }
+
+  .seccion__cabecera {
+    margin-bottom: 48px;
   }
 }

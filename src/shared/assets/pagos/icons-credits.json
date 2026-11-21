@@ -1,0 +1,50 @@
+[
+  {
+    "file": "amex.svg",
+    "icon": "logos:amex",
+    "name": "American Express",
+    "kind": "colour",
+    "source": "gilbarbara/logos@d6960edc1b7309d392c76e40d3a320df7f9ff85c",
+    "author": "Gil Barbara",
+    "licence": "CC0-1.0",
+    "url": "https://github.com/gilbarbara/logos",
+    "trademark": true,
+    "markUrl": "https://www.americanexpress.com/"
+  },
+  {
+    "file": "dinersclub.svg",
+    "icon": "logos:dinersclub",
+    "name": "Dinersclub",
+    "kind": "colour",
+    "source": "gilbarbara/logos@d6960edc1b7309d392c76e40d3a320df7f9ff85c",
+    "author": "Gil Barbara",
+    "licence": "CC0-1.0",
+    "url": "https://github.com/gilbarbara/logos",
+    "trademark": true,
+    "markUrl": "https://www.dinersclub.com/"
+  },
+  {
+    "file": "mastercard.svg",
+    "icon": "logos:mastercard",
+    "name": "Mastercard",
+    "kind": "colour",
+    "source": "gilbarbara/logos@d6960edc1b7309d392c76e40d3a320df7f9ff85c",
+    "author": "Gil Barbara",
+    "licence": "CC0-1.0",
+    "url": "https://github.com/gilbarbara/logos",
+    "trademark": true,
+    "markUrl": "https://www.mastercard.com/"
+  },
+  {
+    "file": "visa.svg",
+    "icon": "logos:visa",
+    "name": "Visa",
+    "kind": "colour",
+    "source": "gilbarbara/logos@d6960edc1b7309d392c76e40d3a320df7f9ff85c",
+    "author": "Gil Barbara",
+    "licence": "CC0-1.0",
+    "url": "https://github.com/gilbarbara/logos",
+    "trademark": true,
+    "markUrl": "https://www.visa.com"
+  }
+]

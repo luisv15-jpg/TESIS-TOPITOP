@@ -1,0 +1,274 @@
+.pagina-tienda {
+  /* Página clara: controles nativos (radios, casillas, barras) en su versión clara */
+  color-scheme: light;
+  min-height: 70svh;
+  padding: calc(var(--header-h) + 40px) var(--gutter) 80px;
+  /* Franja verde pino bajo el encabezado y el contenido sobre blanco */
+  background: linear-gradient(var(--fondo) var(--header-h), var(--pagina) var(--header-h));
+  color: var(--tinta-oscura);
+}
+
+.pagina-tienda__contenido {
+  width: 100%;
+  min-width: 0;
+  max-width: 1160px;
+  margin-inline: auto;
+}
+
+.pagina-tienda--angosto .pagina-tienda__contenido {
+  max-width: 760px;
+}
+
+.pagina-tienda__cabecera {
+  margin-bottom: 32px;
+}
+
+.pagina-tienda__etiqueta {
+  margin: 0 0 8px;
+  color: var(--rojo-texto);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.pagina-tienda__titulo {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 600;
+  line-height: 1.15;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.pagina-tienda__bajada {
+  max-width: 60ch;
+  margin: 12px 0 0;
+  color: #4a4a50;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Piezas comunes de formulario en páginas claras */
+.pagina-tienda .campo {
+  display: grid;
+  gap: 6px;
+}
+
+.pagina-tienda .campo__etiqueta {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pagina-tienda .campo__requerido {
+  color: #b0000c;
+}
+
+.pagina-tienda .campo__fila {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pagina-tienda .campo__fila > .campo__control {
+  flex: 1;
+  min-width: 0;
+}
+
+.pagina-tienda .campo__grupo {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+/* float saca la leyenda del borde del fieldset: queda dentro de la tarjeta como un título */
+.pagina-tienda .campo__leyenda {
+  float: left;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.pagina-tienda .campo__opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.pagina-tienda .campo__opcion {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.pagina-tienda .campo__opcion input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #111114;
+  cursor: pointer;
+}
+
+.pagina-tienda .campo__opcion input:focus-visible {
+  outline: 2px solid var(--rojo-texto);
+  outline-offset: 2px;
+}
+
+.pagina-tienda .boton-texto {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--radio-control);
+  background: transparent;
+  color: #111114;
+  font-family: var(--fuente);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.pagina-tienda .boton-texto:hover {
+  color: var(--rojo-texto);
+}
+
+.pagina-tienda .boton-texto:focus-visible {
+  outline: 2px solid var(--rojo-texto);
+  outline-offset: 2px;
+}
+
+.pagina-tienda .campo__ayuda {
+  margin: 0;
+  color: #5a5a60;
+  font-size: 13px;
+}
+
+.pagina-tienda .campo__error {
+  margin: 0;
+  color: #b0000c;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pagina-tienda .campo__control {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid #b9b9bf;
+  border-radius: var(--radio-control);
+  background: #ffffff;
+  color: #111114;
+  font-family: var(--fuente);
+  font-size: 16px;
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  transition: border-color var(--dur-rapida) var(--ease-estandar);
+}
+
+.pagina-tienda textarea.campo__control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.pagina-tienda .campo__control:hover {
+  border-color: #6b6b72;
+}
+
+.pagina-tienda .campo__control:focus-visible {
+  border-color: #111114;
+  outline-color: #111114;
+}
+
+.pagina-tienda .campo__control[aria-invalid='true'] {
+  border-color: #b0000c;
+}
+
+.pagina-tienda .boton-primario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: var(--radio-control);
+  background: var(--rojo-marca);
+  color: #ffffff;
+  font-family: var(--fuente);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform var(--dur-rapida) var(--ease-salida),
+    background-color var(--dur-rapida) var(--ease-estandar);
+}
+
+.pagina-tienda .boton-primario:hover {
+  background: var(--rojo-hover);
+  transform: translateY(-2px);
+}
+
+.pagina-tienda .boton-primario:active {
+  transform: scale(0.97);
+}
+
+.pagina-tienda .boton-primario:focus-visible,
+.pagina-tienda .boton-secundario:focus-visible {
+  outline: 2px solid var(--rojo-texto);
+  outline-offset: 3px;
+}
+
+.pagina-tienda .boton-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid #b9b9bf;
+  border-radius: var(--radio-control);
+  background: #ffffff;
+  color: #111114;
+  font-family: var(--fuente);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-rapida) var(--ease-estandar),
+    transform var(--dur-rapida) var(--ease-salida);
+}
+
+.pagina-tienda .boton-secundario:hover {
+  border-color: #111114;
+  transform: translateY(-2px);
+}
+
+.pagina-tienda .tarjeta-blanca {
+  padding: 24px;
+  border-radius: var(--radio);
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 1100px) {
+  .pagina-tienda {
+    padding-inline: calc(82 * var(--u));
+  }
+}
+
+/* El título recibe el foco por código (tabIndex -1) para no perderlo; no es un control */
+.pagina-tienda__titulo:focus {
+  outline: none;
+}

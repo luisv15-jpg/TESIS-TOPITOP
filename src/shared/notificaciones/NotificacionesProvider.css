@@ -1,0 +1,100 @@
+/* Avisos de la tienda (PrimeReact Toast sin tema) */
+.aviso-tienda.p-toast {
+  width: min(360px, calc(100vw - 32px));
+  font-family: var(--fuente);
+  text-transform: none;
+}
+
+.aviso-tienda .p-toast-message {
+  margin-bottom: 12px;
+  border-radius: var(--radio);
+  background: #ffffff;
+  color: #111114;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.aviso-tienda .p-toast-message-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px 10px 14px 16px;
+}
+
+.aviso-tienda__cuerpo {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.aviso-tienda__icono {
+  flex: none;
+  margin-top: 1px;
+  font-size: 22px;
+}
+
+.aviso-tienda__cuerpo--exito .aviso-tienda__icono {
+  color: #0a7a32;
+}
+
+.aviso-tienda__cuerpo--info .aviso-tienda__icono {
+  color: #1f5fbf;
+}
+
+.aviso-tienda__cuerpo--aviso .aviso-tienda__icono {
+  color: #a35a00;
+}
+
+.aviso-tienda__cuerpo--error .aviso-tienda__icono {
+  color: #c20010;
+}
+
+.aviso-tienda__texto {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.aviso-tienda__titulo {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.aviso-tienda__detalle {
+  margin: 2px 0 0;
+  color: #44444a;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.aviso-tienda__accion {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  margin-top: 6px;
+  color: #c20010;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.aviso-tienda .p-toast-icon-close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #44444a;
+  cursor: pointer;
+}
+
+.aviso-tienda .p-toast-icon-close:hover {
+  background: rgba(0, 0, 0, 0.06);
+}

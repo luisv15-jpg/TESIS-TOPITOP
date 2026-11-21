@@ -1,0 +1,142 @@
+/* Ficha plana, como en topitop.pe: sin caja ni sombra, la foto sobre gris y el texto debajo */
+.tarjeta-compra {
+  container: tarjeta / inline-size;
+  display: flex;
+  flex-direction: column;
+  color: var(--tinta-oscura);
+}
+
+.tarjeta-compra__foto {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: var(--panel);
+}
+
+.tarjeta-compra__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-salida);
+}
+
+.tarjeta-compra:hover .tarjeta-compra__foto img {
+  transform: scale(1.03);
+}
+
+/* Sellos pegados al borde izquierdo de la foto: el descuento en negro y el de campaña en pino */
+.tarjeta-compra__sellos {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+}
+
+.tarjeta-compra__descuento,
+.tarjeta-compra__sello {
+  padding: 5px 10px;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.tarjeta-compra__descuento {
+  background: var(--barra-avisos);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tarjeta-compra__sello {
+  background: var(--pino);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Abajo a la derecha: arriba quedan los sellos, que en fichas angostas chocarían con él */
+.tarjeta-compra .tarjeta-compra__favorito {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+}
+
+.tarjeta-compra__cuerpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 14px;
+}
+
+/* Línea y nombre a la izquierda; el precio anterior y el actual, uno sobre otro, a la derecha */
+.tarjeta-compra__cabeza {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 12px;
+}
+
+.tarjeta-compra__linea {
+  grid-column: 1;
+  margin: 0;
+  color: var(--tinta-media);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tarjeta-compra__nombre {
+  grid-column: 1;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.tarjeta-compra .tarjeta-compra__precio {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  flex-direction: column-reverse;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 2px;
+  font-size: 15px;
+}
+
+.tarjeta-compra .tarjeta-compra__precio .precio-producto__actual {
+  font-weight: 700;
+}
+
+/* «Agregar al carrito» al fondo de la ficha: los botones de una fila quedan a la misma altura */
+.tarjeta-compra .compra-rapida {
+  flex: 1;
+}
+
+.tarjeta-compra .compra-rapida__agregar {
+  margin-top: auto;
+}
+
+/* Ficha angosta (dos columnas en celular): el precio baja bajo el nombre */
+@container tarjeta (max-width: 230px) {
+  .tarjeta-compra__cabeza {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tarjeta-compra .tarjeta-compra__precio {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 2px 8px;
+    margin-top: 4px;
+  }
+}

@@ -1,0 +1,218 @@
+.site-footer {
+  --anillo: var(--oro-claro);
+  border-top: 3px solid var(--oro);
+  background: var(--fondo);
+  color: var(--tinta);
+}
+
+.site-footer__lienzo {
+  display: grid;
+  gap: 40px;
+  /* Mismos bordes que las secciones de la portada */
+  max-width: calc(var(--contenido) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: 56px var(--gutter) 32px;
+}
+
+.site-footer__alto {
+  display: grid;
+  gap: 32px;
+}
+
+.site-footer__logo {
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.site-footer__logo img {
+  width: 122px;
+  height: auto;
+}
+
+.site-footer__lema {
+  margin: 12px 0 0;
+  color: var(--tinta-suave);
+  font-size: 15px;
+}
+
+.site-footer__titulo-suscripcion {
+  margin: 0 0 14px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.site-footer__columnas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 24px;
+  padding-block: 32px;
+  border-block: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.site-footer__titulo-columna {
+  margin: 0 0 12px;
+  color: var(--tinta-tenue);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.site-footer__columna ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__enlace {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  color: var(--tinta-suave);
+  font-size: 15px;
+  transition: color var(--dur-rapida) var(--ease-estandar);
+}
+
+.site-footer__enlace::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-media) var(--ease-salida);
+}
+
+.site-footer__enlace:hover {
+  color: var(--tinta);
+}
+
+.site-footer__enlace:hover::after,
+.site-footer__enlace[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.site-footer__redes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.site-footer__red {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: var(--tinta);
+  font-size: 20px;
+  transition:
+    transform var(--dur-rapida) var(--ease-salida),
+    background-color var(--dur-rapida) var(--ease-estandar),
+    border-color var(--dur-rapida) var(--ease-estandar);
+}
+
+.site-footer__red:hover {
+  border-color: var(--tinta);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.site-footer__red:active {
+  transform: scale(0.94);
+}
+
+.site-footer__bajo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.site-footer__pagos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Los logos de pago están hechos para fondo claro: van en fichas blancas */
+.site-footer__pago {
+  display: grid;
+  place-items: center;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: var(--radio);
+  background: #ffffff;
+}
+
+.site-footer__pago img {
+  width: auto;
+  height: 24px;
+}
+
+.site-footer__libro {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radio-control);
+  font-size: 15px;
+  font-weight: 600;
+  transition:
+    transform var(--dur-rapida) var(--ease-salida),
+    border-color var(--dur-rapida) var(--ease-estandar);
+}
+
+.site-footer__libro svg {
+  font-size: 26px;
+  color: var(--oro-claro);
+}
+
+.site-footer__libro:hover {
+  border-color: var(--tinta);
+  transform: translateY(-2px);
+}
+
+.site-footer__cierre {
+  padding: 16px var(--gutter);
+  background: var(--barra-avisos);
+}
+
+.site-footer__legal {
+  max-width: var(--contenido);
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .site-footer__alto {
+    grid-template-columns: 1fr minmax(0, 520px);
+    align-items: end;
+  }
+
+  .site-footer__columnas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .site-footer__lienzo {
+    gap: calc(48 * var(--u));
+    padding: calc(80 * var(--u)) calc(82 * var(--u)) calc(36 * var(--u));
+  }
+}

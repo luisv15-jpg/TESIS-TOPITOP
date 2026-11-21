@@ -1,0 +1,34 @@
+.boton-favorito {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111114;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  transition:
+    transform var(--dur-rapida) var(--ease-salida),
+    color var(--dur-rapida) var(--ease-estandar);
+}
+
+.boton-favorito:hover {
+  transform: translateY(-2px);
+}
+
+.boton-favorito:active {
+  transform: scale(0.9);
+}
+
+.boton-favorito[aria-pressed='true'] {
+  color: var(--rojo-texto);
+}
+
+.boton-favorito:focus-visible {
+  outline: 2px solid var(--rojo-texto);
+  outline-offset: 2px;
+}

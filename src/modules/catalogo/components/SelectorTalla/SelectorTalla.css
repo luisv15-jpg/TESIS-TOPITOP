@@ -1,0 +1,58 @@
+.selector-talla {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.selector-talla__etiqueta {
+  color: #55555c;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.selector-talla .selector-talla__opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.selector-talla .p-button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 10px;
+  border: 1px solid #c9c9ce;
+  border-radius: var(--radio-control);
+  background: #ffffff;
+  color: #111114;
+  font-family: var(--fuente);
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    border-color var(--dur-rapida) var(--ease-estandar),
+    background-color var(--dur-rapida) var(--ease-estandar),
+    transform var(--dur-rapida) var(--ease-salida);
+}
+
+.selector-talla .p-button:hover {
+  border-color: #111114;
+}
+
+.selector-talla .p-button:active {
+  transform: scale(0.95);
+}
+
+.selector-talla .p-button.p-highlight {
+  border-color: #111114;
+  background: #111114;
+  color: #ffffff;
+}
+
+.selector-talla .p-button:focus-visible {
+  outline: 2px solid var(--rojo-texto);
+  outline-offset: 2px;
+}

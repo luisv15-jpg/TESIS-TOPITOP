@@ -1,0 +1,149 @@
+.compra-rapida {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.compra-rapida__etiqueta {
+  margin: 0;
+  color: #55555c;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.compra-rapida__etiqueta strong {
+  color: #111114;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.compra-rapida__colores {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* float saca la leyenda del borde del fieldset: queda como una etiqueta más */
+.compra-rapida__colores > legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+}
+
+.compra-rapida__muestras {
+  display: flex;
+  gap: 8px;
+}
+
+.compra-rapida__muestra {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* El radio real cubre la muestra, invisible: recibe clics, foco y flechas */
+.compra-rapida__radio {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.compra-rapida__muestra::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  background: var(--muestra);
+  pointer-events: none;
+}
+
+.compra-rapida__muestra:has(:checked)::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 2px solid #111114;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.compra-rapida__muestra:has(:focus-visible) {
+  outline: 2px solid var(--rojo-texto);
+  outline-offset: 1px;
+}
+
+.compra-rapida .compra-rapida__agregar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radio-control);
+  background: #111114;
+  color: #ffffff;
+  font-family: var(--fuente);
+  font-size: 15px;
+  font-weight: 600;
+  transition:
+    transform var(--dur-rapida) var(--ease-salida),
+    background-color var(--dur-rapida) var(--ease-estandar);
+}
+
+.compra-rapida__texto {
+  flex: none;
+  white-space: nowrap;
+}
+
+.compra-rapida .compra-rapida__agregar .p-button-icon {
+  font-size: 18px;
+}
+
+.compra-rapida .compra-rapida__agregar:hover {
+  background: var(--rojo-texto);
+  transform: translateY(-2px);
+}
+
+.compra-rapida .compra-rapida__agregar:active {
+  transform: scale(0.97);
+}
+
+.compra-rapida .compra-rapida__agregar:focus-visible {
+  outline: 2px solid var(--rojo-texto);
+  outline-offset: 3px;
+}
+
+.compra-rapida--compacta {
+  gap: 10px;
+}
+
+.compra-rapida--compacta .compra-rapida__agregar {
+  width: 100%;
+  padding-inline: 12px;
+}
+
+/* Tarjeta angosta (dos columnas en celular): el botón dice «Agregar» */
+@container tarjeta (max-width: 230px) {
+  .compra-rapida__texto-extra {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

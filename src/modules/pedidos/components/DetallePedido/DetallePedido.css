@@ -1,0 +1,112 @@
+.detalle-pedido {
+  display: grid;
+  gap: 24px;
+}
+
+.detalle-pedido__cabecera {
+  display: grid;
+  gap: 4px;
+}
+
+.detalle-pedido__codigo {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.detalle-pedido__fecha {
+  margin: 0;
+  color: #55555c;
+  font-size: 14px;
+}
+
+.detalle-pedido__pasos {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detalle-pedido__paso {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 52px;
+  color: #6b6b72;
+}
+
+/* Tramo vertical que une los pasos */
+.detalle-pedido__paso:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  bottom: -12px;
+  left: 15px;
+  width: 2px;
+  background: #e2e2e6;
+}
+
+.detalle-pedido__paso--hecho:not(:last-child)::after {
+  background: #111114;
+}
+
+.detalle-pedido__marca {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #d4d4d9;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.detalle-pedido__paso--hecho {
+  color: #111114;
+}
+
+.detalle-pedido__paso--hecho .detalle-pedido__marca {
+  border-color: #111114;
+  background: #111114;
+  color: #ffffff;
+}
+
+.detalle-pedido__paso--actual {
+  color: #111114;
+  font-weight: 600;
+}
+
+.detalle-pedido__paso--actual .detalle-pedido__marca {
+  border-color: var(--rojo-texto);
+  background: var(--rojo-texto);
+  color: #ffffff;
+  box-shadow: 0 0 0 5px rgba(236, 0, 0, 0.14);
+}
+
+.detalle-pedido__datos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid #ececee;
+}
+
+.detalle-pedido__datos dt {
+  color: #55555c;
+  font-size: 13px;
+}
+
+.detalle-pedido__datos dd {
+  margin: 2px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

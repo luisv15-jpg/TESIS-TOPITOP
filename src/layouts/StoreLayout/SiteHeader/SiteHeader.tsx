@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ListIcon } from '@phosphor-icons/react'
 import { Button } from 'primereact/button'
 import { Link, NavLink } from 'react-router'
+import { useCantidadEnCarrito } from '@/modules/carrito/store/carrito.store'
 import { listarCategorias } from '@/modules/catalogo/services/categorias.service'
 import logo from '@/shared/assets/brand/logo-topitop.svg'
 import { ACCESOS_TIENDA } from '../accesos'
@@ -14,6 +15,7 @@ const ID_MENU_MOVIL = 'menu-movil'
 export function SiteHeader() {
   const [menuAbierto, setMenuAbierto] = useState(false)
   const categorias = listarCategorias()
+  const enCarrito = useCantidadEnCarrito()
 
   return (
     <header className="site-header">
@@ -37,13 +39,22 @@ export function SiteHeader() {
         <Buscador className="site-header__buscador buscador--header" />
 
         <ul className="site-header__accesos" aria-label="Tu compra">
-          {ACCESOS_TIENDA.map(({ id, ruta, etiqueta, Icono }) => (
-            <li key={id} className={`site-header__acceso site-header__acceso--${id}`}>
-              <NavLink to={ruta} className="site-header__icono" aria-label={etiqueta} title={etiqueta}>
-                <Icono weight="regular" aria-hidden="true" />
-              </NavLink>
-            </li>
-          ))}
+          {ACCESOS_TIENDA.map(({ id, ruta, etiqueta, Icono }) => {
+            const contador = id === 'carrito' && enCarrito > 0 ? enCarrito : null
+            const nombre = contador ? `${etiqueta} (${contador} ${contador === 1 ? 'prenda' : 'prendas'})` : etiqueta
+            return (
+              <li key={id} className={`site-header__acceso site-header__acceso--${id}`}>
+                <NavLink to={ruta} className="site-header__icono" aria-label={nombre} title={etiqueta}>
+                  <Icono weight="regular" aria-hidden="true" />
+                  {contador && (
+                    <span className="site-header__contador" aria-hidden="true">
+                      {contador > 9 ? '9+' : contador}
+                    </span>
+                  )}
+                </NavLink>
+              </li>
+            )
+          })}
         </ul>
 
         <Button

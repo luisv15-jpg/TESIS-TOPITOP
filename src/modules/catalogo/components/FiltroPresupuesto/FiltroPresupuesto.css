@@ -1,0 +1,102 @@
+/*
+  Pestañas de texto separadas por una línea, como «Para él | Para ella» de topitop.pe.
+  La elegida va en negro con un subrayado rojo; las demás en gris.
+*/
+.filtro-presupuesto {
+  --pad: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  margin: 0 0 0 calc(-1 * var(--pad));
+  padding: 0;
+  border: 0;
+}
+
+.filtro-presupuesto__opcion {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--pad);
+  color: var(--tinta-media);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--dur-rapida) var(--ease-estandar);
+}
+
+/* La línea entre pestañas */
+.filtro-presupuesto__opcion + .filtro-presupuesto__opcion::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 1px;
+  background: var(--borde);
+}
+
+/* El subrayado: se dibuja desde la izquierda al elegir */
+.filtro-presupuesto__opcion::after {
+  content: '';
+  position: absolute;
+  right: var(--pad);
+  bottom: 6px;
+  left: var(--pad);
+  height: 2px;
+  background: var(--rojo-marca);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-media) var(--ease-salida);
+}
+
+/* El radio real cubre la pestaña, invisible: recibe clics, foco y flechas */
+.filtro-presupuesto__radio {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.filtro-presupuesto__opcion:hover {
+  color: var(--tinta-oscura);
+}
+
+.filtro-presupuesto__opcion:has(:checked) {
+  color: var(--tinta-oscura);
+}
+
+.filtro-presupuesto__opcion:has(:checked)::after {
+  transform: scaleX(1);
+}
+
+.filtro-presupuesto__opcion:has(:focus-visible) {
+  outline: 2px solid var(--tinta-oscura);
+  outline-offset: -2px;
+}
+
+/* Celular: las pestañas pueden bajar de línea; sin separadores, ninguna línea empieza con uno */
+@media (max-width: 559px) {
+  .filtro-presupuesto {
+    --pad: 10px;
+  }
+
+  .filtro-presupuesto__opcion {
+    font-size: 14px;
+  }
+
+  .filtro-presupuesto__opcion + .filtro-presupuesto__opcion::before {
+    display: none;
+  }
+}
+
+/* Alto contraste de Windows: el subrayado se ve con el color del sistema */
+@media (forced-colors: active) {
+  .filtro-presupuesto__opcion::after {
+    background: Highlight;
+  }
+}

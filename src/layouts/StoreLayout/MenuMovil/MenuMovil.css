@@ -4,6 +4,7 @@
 }
 
 .menu-movil.p-sidebar {
+  --anillo: var(--oro-claro);
   display: flex;
   flex-direction: column;
   width: min(360px, 88vw);
@@ -75,7 +76,7 @@
 
 .menu-movil__enlace:hover,
 .menu-movil__enlace[aria-current='page'] {
-  color: var(--rojo-cyber);
+  color: var(--oro-claro);
 }
 
 .menu-movil__accesos {

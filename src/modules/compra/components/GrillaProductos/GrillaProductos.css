@@ -1,0 +1,25 @@
+.grilla-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  /* Fichas planas como en topitop.pe: columnas juntas y aire entre filas */
+  gap: 44px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grilla-productos__item {
+  display: flex;
+  min-width: 0;
+}
+
+.grilla-productos__item > * {
+  flex: 1;
+}
+
+@media (max-width: 559px) {
+  .grilla-productos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 10px;
+  }
+}

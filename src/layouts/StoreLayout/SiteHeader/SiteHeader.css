@@ -1,7 +1,14 @@
 .site-header {
+  --anillo: var(--oro-claro);
+  /* Sobre la foto del hero (o la franja pino de las páginas), bajo la barra de avisos */
   position: absolute;
-  inset: 0 0 auto;
+  top: var(--aviso-h);
+  right: 0;
+  left: 0;
   z-index: var(--z-header);
+  color: var(--tinta);
+  /* Legible sobre la pared clara de la foto */
+  text-shadow: 0 1px 2px rgba(52, 30, 20, 0.35);
 }
 
 .site-header__barra {
@@ -56,6 +63,35 @@
   transition: transform var(--dur-rapida) var(--ease-salida);
 }
 
+.site-header__icono {
+  position: relative;
+}
+
+/* Contador de prendas sobre la bolsa */
+.site-header__contador {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--rojo-texto);
+  color: var(--tinta);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  animation: contador-entra var(--dur-media) var(--ease-salida);
+}
+
+@keyframes contador-entra {
+  from {
+    transform: scale(0.4);
+  }
+}
+
 .site-header__icono:hover {
   transform: translateY(-2px);
 }
@@ -78,6 +114,10 @@
   transition: transform var(--dur-rapida) var(--ease-salida);
 }
 
+.site-header .site-header__menu .p-button-label {
+  display: none;
+}
+
 .site-header .site-header__menu:active {
   transform: scale(0.92);
 }
@@ -87,28 +127,29 @@
   .site-header__barra {
     align-items: center;
     gap: 0;
+    max-width: var(--lienzo-hero);
     height: auto;
-    padding: calc(47 * var(--u)) calc(70.5 * var(--u)) 0 calc(82 * var(--u));
+    padding: calc(42 * var(--s)) calc(70.5 * var(--s)) 0 calc(82 * var(--s));
   }
 
   .site-header__logo {
     margin-right: 0;
     padding-block: 0;
-    transform: translateY(calc(1.5 * var(--u)));
+    transform: translateY(calc(1.5 * var(--s)));
   }
 
   .site-header__logo img {
-    width: calc(101.9 * var(--u));
+    width: calc(101.9 * var(--s));
   }
 
   .site-header__nav {
     display: block;
-    margin-left: calc(68 * var(--u));
+    margin-left: calc(68 * var(--s));
   }
 
   .site-header__categorias {
     display: flex;
-    gap: calc(47.5 * var(--u));
+    gap: calc(45 * var(--s));
     margin: 0;
     padding: 0;
     list-style: none;
@@ -117,8 +158,8 @@
   .site-header__categoria {
     position: relative;
     display: block;
-    padding-block: calc(9 * var(--u));
-    font-size: max(12.5px, calc(13.5 * var(--u)));
+    padding-block: calc(9 * var(--s));
+    font-size: max(12px, calc(12.3 * var(--s)));
     font-weight: 400;
     line-height: 1.2;
     white-space: nowrap;
@@ -128,7 +169,7 @@
     content: '';
     position: absolute;
     right: 0;
-    bottom: calc(4 * var(--u));
+    bottom: calc(4 * var(--s));
     left: 0;
     height: 1px;
     background: currentColor;
@@ -144,13 +185,13 @@
 
   .site-header__buscador {
     display: block;
-    width: calc(229 * var(--u));
+    width: calc(229 * var(--s));
     margin-left: auto;
   }
 
   .site-header__accesos {
-    gap: calc(32 * var(--u));
-    margin-left: calc(20 * var(--u));
+    gap: calc(32 * var(--s));
+    margin-left: calc(20 * var(--s));
   }
 
   .site-header__acceso--pedidos,
@@ -159,9 +200,9 @@
   }
 
   .site-header__icono {
-    width: max(32px, calc(40 * var(--u)));
-    height: max(32px, calc(40 * var(--u)));
-    font-size: calc(22 * var(--u));
+    width: max(32px, calc(40 * var(--s)));
+    height: max(32px, calc(40 * var(--s)));
+    font-size: calc(22 * var(--s));
   }
 
   .site-header .site-header__menu {

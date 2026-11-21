@@ -1,50 +1,111 @@
+/*
+  Hero de la campaña: la foto a todo el ancho y el título sobre la pared.
+  Pantallas angostas: la foto arriba (centrada en la pareja) y el título debajo, sobre crema.
+*/
 .hero-campania {
+  /* Punto de la foto que queda a la vista al recortarla: la pareja y el árbol, a la derecha */
+  --foco-x: 0.9;
+  --foco-y: 1;
   position: relative;
-  height: 100svh;
-  min-height: 560px;
-  overflow: hidden;
-  background: var(--fondo);
+  display: flex;
+  flex-direction: column;
+  /* La pantalla menos la barra de avisos, que va arriba */
+  min-height: calc(100svh - var(--aviso-h));
+  background: var(--pagina);
   isolation: isolate;
 }
 
-.hero-campania__foto {
+/* Sombra cálida detrás del encabezado: el texto blanco se lee sobre la pared clara */
+.hero-campania::before {
+  content: '';
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 64% 100%;
+  inset: 0 0 auto;
+  z-index: 1;
+  height: calc(var(--header-h) + 72px);
+  background: linear-gradient(rgba(52, 30, 20, 0.5), rgba(52, 30, 20, 0));
+  pointer-events: none;
 }
 
-.hero-campania__lienzo {
+.hero-campania__escena {
+  /* Contenedor de referencia: el lienzo calcula su recorte con unidades cqw y cqh */
+  container-type: size;
   position: relative;
+  /* Alto fijo: con un alto que sale del flex, las unidades cqh del lienzo valdrían 0 */
+  flex: none;
+  /* La pantalla menos el bloque del título (unos 200 px), sin bajar de la mitad */
+  height: max(52svh, calc(100svh - var(--aviso-h) - 200px));
+  overflow: hidden;
+  background: #b48d78;
+}
+
+/*
+  El lienzo reproduce object-fit: cover con el tamaño real de la foto. Así las luces, que están
+  medidas en píxeles de la foto, calzan con el árbol a cualquier tamaño de pantalla.
+*/
+.hero-campania__lienzo {
+  --ancho: max(100cqw, calc(100cqh * var(--foto-ancho) / var(--foto-alto)));
+  position: absolute;
+  top: calc((100cqh - var(--ancho) * var(--foto-alto) / var(--foto-ancho)) * var(--foco-y));
+  left: calc((100cqw - var(--ancho)) * var(--foco-x));
+  width: var(--ancho);
+  aspect-ratio: var(--foto-proporcion);
+}
+
+.hero-campania__foto {
+  width: 100%;
   height: 100%;
-  max-width: var(--lienzo);
-  margin-inline: auto;
+}
+
+.hero-campania__luces {
+  position: absolute;
+  top: var(--luces-y);
+  left: var(--luces-x);
+  width: var(--luces-ancho);
+  height: var(--luces-alto);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hero-campania__luz {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.hero-campania__contenido {
+  position: relative;
+  z-index: 2;
+  flex: 1 0 auto;
+  padding: 24px calc(var(--gutter) + 64px) 28px var(--gutter);
 }
 
 .hero-campania__titulo {
-  position: absolute;
-  top: calc(var(--header-h) + 20px);
-  left: calc(var(--gutter) - 0.04em);
   margin: 0;
-  color: var(--rojo-cyber);
-  font-size: clamp(48px, 15vw, 96px);
-  font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: 0.36em;
+  color: var(--rojo-titulo);
+  font-size: clamp(38px, 11vw, 72px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.hero-campania__linea {
-  display: block;
+.hero-campania__subtitulo {
+  margin: 10px 0 0;
+  color: #000000;
+  font-size: clamp(17px, 4.6vw, 28px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .hero-campania .hero-campania__bajar {
   position: absolute;
-  bottom: 24px;
-  left: calc(50% - 24px);
+  right: var(--gutter);
+  bottom: 28px;
+  z-index: 2;
   display: grid;
   place-items: center;
   width: 48px;
@@ -52,17 +113,22 @@
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: var(--tinta);
+  background: #ffffff;
   color: var(--gris-flecha);
-  font-size: 24px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  font-size: 22px;
+  box-shadow: 0 6px 18px rgba(52, 30, 20, 0.18);
+  cursor: pointer;
   transition:
     transform var(--dur-rapida) var(--ease-salida),
     color var(--dur-rapida) var(--ease-estandar);
 }
 
+.hero-campania .hero-campania__bajar .p-button-label {
+  display: none;
+}
+
 .hero-campania .hero-campania__bajar:hover {
-  color: #1f1f1f;
+  color: var(--tinta-oscura);
   transform: translateY(3px);
 }
 
@@ -71,25 +137,112 @@
 }
 
 .hero-campania .hero-campania__bajar:focus-visible {
-  outline: 2px solid var(--tinta);
+  outline: 2px solid var(--tinta-oscura);
   outline-offset: 4px;
 }
 
-/* Entrada única al cargar */
-.hero-campania__foto[data-enter] {
-  animation: hero-foto var(--dur-entrada) var(--ease-estandar) both;
+/*
+  Entrada «luces», una vez por carga: la sala empieza en penumbra, las luces del árbol se encienden
+  por grupos, la sala se aclara y entra el título. Las luces titilan unos segundos y se apagan
+  (la foto ya las trae encendidas). Con menos movimiento la foto aparece tal cual.
+*/
+.hero-campania[data-entrada='luces'] .hero-campania__lienzo {
+  animation: hero-acercamiento 3200ms var(--ease-salida) both;
 }
 
-.hero-campania__linea[data-enter] {
-  animation: hero-linea var(--dur-entrada) var(--ease-salida) both;
+/* Hasta que la foto y las luces cargan, todo espera en su primer cuadro (sala en penumbra, sin título) */
+.hero-campania[data-entrada='luces']:not([data-lista])
+  :is(
+    .hero-campania__lienzo,
+    .hero-campania__foto,
+    .hero-campania__luz,
+    .hero-campania__titulo,
+    .hero-campania__subtitulo,
+    .hero-campania__bajar
+  ) {
+  animation-play-state: paused;
 }
 
-.hero-campania__linea[data-enter] + .hero-campania__linea[data-enter] {
-  animation-delay: 110ms;
+.hero-campania[data-entrada='luces'] .hero-campania__foto {
+  animation: hero-sala 2600ms cubic-bezier(0.45, 0, 0.2, 1) both;
 }
 
-@keyframes hero-foto {
+.hero-campania[data-entrada='luces'] .hero-campania__luz {
+  animation: hero-luz 4800ms linear both;
+}
+
+.hero-campania[data-entrada='luces'] .hero-campania__luz:nth-child(2) {
+  animation-delay: 220ms;
+}
+
+.hero-campania[data-entrada='luces'] .hero-campania__luz:nth-child(3) {
+  animation-delay: 440ms;
+}
+
+.hero-campania[data-entrada='luces'] .hero-campania__titulo {
+  animation: hero-linea var(--dur-entrada) var(--ease-salida) 1100ms both;
+}
+
+.hero-campania[data-entrada='luces'] .hero-campania__subtitulo {
+  animation: hero-linea var(--dur-entrada) var(--ease-salida) 1250ms both;
+}
+
+.hero-campania[data-entrada='luces'] .hero-campania__bajar {
+  animation: hero-aparece var(--dur-entrada) var(--ease-estandar) 1800ms both;
+}
+
+@keyframes hero-acercamiento {
   from {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes hero-sala {
+  0%,
+  30% {
+    filter: brightness(0.42) saturate(0.75);
+  }
+
+  100% {
+    filter: none;
+  }
+}
+
+@keyframes hero-luz {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  8% {
+    opacity: 0.3;
+  }
+
+  11%,
+  42% {
+    opacity: 1;
+  }
+
+  55% {
+    opacity: 0.45;
+  }
+
+  66% {
+    opacity: 0.9;
+  }
+
+  78% {
+    opacity: 0.35;
+  }
+
+  88% {
+    opacity: 0.6;
+  }
+
+  100% {
     opacity: 0;
   }
 }
@@ -97,36 +250,70 @@
 @keyframes hero-linea {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(24px);
   }
 }
 
-/* Escritorio: medidas del lienzo de 1300 px del diseño */
-@media (min-width: 1100px) {
+@keyframes hero-aparece {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Tablet: la foto ocupa más alto y se ve también el árbol */
+@media (min-width: 640px) {
   .hero-campania {
-    height: max(calc(560 * var(--u)), calc(100svh - var(--banda-h)));
-    min-height: 0;
+    --foco-x: 1;
   }
 
-  .hero-campania__foto {
-    object-position: 50% 100%;
+  .hero-campania__escena {
+    height: max(56svh, calc(100svh - var(--aviso-h) - 190px));
+  }
+}
+
+/* Escritorio: la foto de borde a borde y el título sobre la pared, con las medidas del diseño */
+@media (min-width: 1100px) {
+  .hero-campania {
+    --foco-x: 0.85;
+    --foco-y: 0.55;
+    display: block;
+    height: calc(100svh - var(--aviso-h));
+    min-height: calc(685 * var(--s));
+  }
+
+  .hero-campania__escena {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+
+  .hero-campania__contenido {
+    position: absolute;
+    top: 30%;
+    left: max(var(--gutter), calc(50% - var(--lienzo-hero) / 2 + 60 * var(--s)));
+    padding: 0;
   }
 
   .hero-campania__titulo {
-    top: auto;
-    bottom: calc(228.7 * var(--u));
-    left: calc(40 * var(--u));
-    font-size: calc(112 * var(--u));
-    line-height: calc(115 * var(--u));
-    letter-spacing: 0.44em;
+    font-size: calc(86 * var(--s));
+    line-height: 1;
+    letter-spacing: 0.085em;
+    white-space: nowrap;
+  }
+
+  .hero-campania__subtitulo {
+    margin-top: calc(30 * var(--s));
+    font-size: calc(39 * var(--s));
+    letter-spacing: 0.045em;
+    white-space: nowrap;
   }
 
   .hero-campania .hero-campania__bajar {
-    bottom: calc(21 * var(--u));
-    left: calc(637 * var(--u));
-    width: calc(50 * var(--u));
-    height: calc(50 * var(--u));
-    font-size: calc(24 * var(--u));
-    box-shadow: none;
+    right: auto;
+    bottom: calc(22 * var(--s));
+    left: calc(50% - max(24px, 26 * var(--s)));
+    width: max(48px, calc(52 * var(--s)));
+    height: max(48px, calc(52 * var(--s)));
+    font-size: calc(24 * var(--s));
   }
 }

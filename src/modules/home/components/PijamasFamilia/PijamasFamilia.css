@@ -1,0 +1,91 @@
+/* Panel gris entre las secciones blancas, como los bloques de topitop.pe */
+.pijamas {
+  background: var(--panel);
+}
+
+.pijamas__grilla {
+  display: grid;
+  gap: 56px;
+  align-items: center;
+}
+
+.pijamas__fotos {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.pijamas__foto {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: var(--panel);
+}
+
+.pijamas__foto img,
+.pijamas__detalle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mientras espera a revelarse, la foto es una copia pálida (ver useRevelarFoto) */
+.pijamas__foto[data-revelado='armado'] img {
+  filter: grayscale(1) contrast(0.55) brightness(1.32);
+  transform: scale(1.06);
+}
+
+/* El detalle monta sobre la esquina de la foto grande, con un marco del color de la sección */
+.pijamas__detalle {
+  position: absolute;
+  right: 4%;
+  bottom: -28px;
+  width: 30%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 6px solid var(--papel);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.pijamas__puntos {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0 32px;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pijamas__puntos li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pijamas__puntos svg {
+  flex: none;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--pino);
+  color: var(--crema);
+  font-size: 14px;
+  box-sizing: content-box;
+}
+
+@media (min-width: 1024px) {
+  .pijamas__grilla {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 72px;
+  }
+
+  .pijamas__fotos {
+    margin-bottom: 0;
+  }
+
+  .pijamas__detalle {
+    right: -8%;
+    bottom: -48px;
+    width: 32%;
+  }
+}

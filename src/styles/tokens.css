@@ -1,26 +1,53 @@
 /*
-  Tokens de la tienda. El diseño de referencia mide 1300 px de ancho:
-  --u equivale a 1 px de ese lienzo, para que la portada guarde sus proporciones
-  en escritorio (tope inferior 1100 px y superior 1560 px de lienzo).
+  Tokens de la tienda, campaña Navidad Top.
+  La base sigue a topitop.pe: página blanca, paneles grises, esquinas rectas y la barra negra de avisos.
+  El toque navideño sale de la foto del hero: el rojo de Topitop, el verde pino del árbol, el dorado
+  de los adornos y el crema de la pared para textos sobre las bandas oscuras.
+
+  El diseño de referencia es un lienzo de 1300 px de ancho. En escritorio:
+  --u = 1 px del lienzo según el ancho.
+  --s = 1 px del lienzo para el hero y el encabezado: el menor entre el ancho y el alto
+        disponible, para que la composición no se deforme en pantallas 16:9.
 */
 :root {
-  --u: clamp(0.846px, calc(100vw / 1300), 1.2px);
+  --u: clamp(0.846px, calc(100vw / 1300), 1.5px);
   --lienzo: calc(1300 * var(--u));
 
-  /* Color */
-  --rojo-cyber: #fe0000;
-  --rojo-marca: #e3000f;
-  --tinta: #ffffff;
-  --tinta-suave: rgba(255, 255, 255, 0.82);
-  --tinta-tenue: rgba(255, 255, 255, 0.62);
-  --linea: rgba(255, 255, 255, 0.62);
-  --fondo: #0c0c10;
-  --fondo-elevado: #17171c;
-  --fondo-banda: #040404;
-  --gris-flecha: #636363;
+  /* Color: página blanca y paneles gris cálido, como topitop.pe */
+  --pagina: #ffffff;
+  --panel: #f3f0ed;
+  --papel: #ffffff;
+  /* Crema de la pared del hero: textos claros sobre las bandas pino y roja */
+  --crema: #f8f2eb;
+  --barra-avisos: #1c1714;
+  --tinta-oscura: #1c1714;
+  --tinta-media: #5f5249;
+  --borde: rgba(28, 23, 20, 0.14);
 
-  /* Tipografía */
-  --fuente: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Rojo: el del título del diseño (#ff0000) apenas más hondo para llegar a 3,5:1 sobre la pared */
+  --rojo-titulo: #e60000;
+  /* Rojo de la marca para textos y botones sobre crema o blanco (5,1:1) */
+  --rojo-marca: #d0021b;
+  --rojo-hover: #a8001a;
+  --rojo-texto: #d0021b;
+
+  /* Superficies oscuras: verde pino del árbol, con texto claro (11:1) */
+  --pino: #173a2b;
+  --pino-hondo: #0f2a1f;
+  --oro: #c9a35b;
+  --oro-claro: #e4c88f;
+
+  /* Nombres de la capa oscura que usan el encabezado, el footer y el menú */
+  --tinta: #ffffff;
+  --tinta-suave: rgba(255, 255, 255, 0.84);
+  --tinta-tenue: rgba(255, 255, 255, 0.66);
+  --linea: rgba(255, 255, 255, 0.5);
+  --fondo: var(--pino);
+  --fondo-elevado: var(--pino-hondo);
+  --gris-flecha: #5f5249;
+
+  /* Tipografía: Montserrat, la del diseño */
+  --fuente: 'Montserrat Variable', 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Movimiento */
   --ease-salida: cubic-bezier(0.22, 1, 0.36, 1);
@@ -34,14 +61,27 @@
   --z-skip: 2000;
 
   /* Medidas compartidas */
+  --aviso-h: 36px;
   --header-h: 64px;
   --gutter: 16px;
-  --banda-h: auto;
+  --contenido: 1240px;
+  /* Esquinas rectas, como topitop.pe: tarjetas y paneles (--radio), botones y campos (--radio-control) */
+  --radio: 2px;
+  --radio-control: 2px;
+  --sombra-tarjeta: 0 1px 2px rgba(28, 23, 20, 0.06), 0 8px 24px rgba(28, 23, 20, 0.06);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+  }
 }
 
 @media (min-width: 1100px) {
   :root {
-    --header-h: calc(126 * var(--u));
-    --banda-h: calc(173 * var(--u));
+    --gutter: 40px;
+    --s: clamp(0.6px, calc((100svh - var(--aviso-h)) / 685), var(--u));
+    --lienzo-hero: calc(1300 * var(--s));
+    --header-h: calc(126 * var(--s));
   }
 }

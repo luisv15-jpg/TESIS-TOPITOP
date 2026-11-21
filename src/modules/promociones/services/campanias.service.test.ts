@@ -1,16 +1,18 @@
 import { describe, expect, it } from 'vitest'
 import { CAMPANIAS } from '../data/campanias'
 import type { Campania } from '../types'
-import { obtenerCampaniaDestacada } from './campanias.service'
+import { buscarCampaniaDestacada, obtenerCampaniaDestacada } from './campanias.service'
 
 describe('obtenerCampaniaDestacada', () => {
-  it('devuelve la campaña Cyber Top con sus condiciones', () => {
+  it('devuelve la campaña Navidad Top con sus condiciones', () => {
     const campania = obtenerCampaniaDestacada()
 
-    expect(campania.titulo).toEqual(['Cyber', 'Top'])
-    expect(campania.regalo.montoMinimo).toBe(250)
+    expect(campania.titulo).toBe('Navidad Top')
+    expect(campania.subtitulo).toBe('Regala momentos')
+    expect(campania.regalo.montoMinimo).toBe(199)
     expect(campania.descuento.monto).toBe(30)
-    expect(campania.cupon.codigo).toBe('CYBERTOP30')
+    expect(campania.cupon.codigo).toBe('NAVIDADTOP')
+    expect(campania.luces?.capas).toHaveLength(3)
   })
 
   it('elige la campaña marcada como destacada', () => {
@@ -24,5 +26,12 @@ describe('obtenerCampaniaDestacada', () => {
     const lista = [{ ...CAMPANIAS[0], destacada: false }]
 
     expect(() => obtenerCampaniaDestacada(lista)).toThrow(/destacada/)
+  })
+})
+
+describe('buscarCampaniaDestacada', () => {
+  it('devuelve la destacada o undefined, sin lanzar', () => {
+    expect(buscarCampaniaDestacada()?.id).toBe('navidad-top')
+    expect(buscarCampaniaDestacada([{ ...CAMPANIAS[0], destacada: false }])).toBeUndefined()
   })
 })

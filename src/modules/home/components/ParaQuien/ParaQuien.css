@@ -1,0 +1,156 @@
+/* El título va en la caja de siempre; los banners van de borde a borde, como en topitop.pe */
+.para-quien {
+  padding-inline: 0;
+  padding-bottom: 0;
+}
+
+.para-quien .seccion__caja {
+  width: auto;
+  max-width: none;
+  margin-inline: max(var(--gutter), calc((100% - var(--contenido)) / 2));
+}
+
+.para-quien__lista {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.para-quien__banner {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--panel);
+  color: #ffffff;
+}
+
+.para-quien__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transition: transform 700ms var(--ease-salida);
+}
+
+/* Sombra desde abajo, hasta encima del título: el texto blanco se lee sobre fotos claras */
+.para-quien__banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(20, 14, 10, 0.8),
+    rgba(20, 14, 10, 0.62) 30%,
+    rgba(20, 14, 10, 0.28) 52%,
+    rgba(20, 14, 10, 0) 72%
+  );
+  pointer-events: none;
+}
+
+.para-quien__texto {
+  position: absolute;
+  right: 16px;
+  bottom: 28px;
+  left: 16px;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.para-quien__titulo {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.para-quien__detalle {
+  max-width: 34ch;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+/* «Ver todo» con borde blanco: se llena al pasar sobre el banner */
+.para-quien__boton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  margin-top: 10px;
+  padding: 0 22px;
+  border: 1px solid #ffffff;
+  border-radius: var(--radio-control);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: none;
+  transition:
+    background-color var(--dur-rapida) var(--ease-estandar),
+    color var(--dur-rapida) var(--ease-estandar);
+}
+
+.para-quien__banner:hover .para-quien__foto {
+  transform: scale(1.03);
+}
+
+.para-quien__banner:hover .para-quien__boton {
+  background: #ffffff;
+  color: var(--tinta-oscura);
+}
+
+/*
+  El anillo va por dentro (los banners se tocan y uno de afuera quedaría tapado por el vecino)
+  y lleva dos tonos: se ve sobre fotos claras y oscuras.
+*/
+.para-quien__banner:focus-visible {
+  outline: none;
+}
+
+.para-quien__banner:focus-visible::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 4px solid var(--tinta-oscura);
+  box-shadow: inset 0 0 0 3px #ffffff;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .para-quien__lista {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .para-quien__banner {
+    aspect-ratio: 3 / 4;
+  }
+
+  .para-quien__titulo {
+    font-size: clamp(24px, 2.6vw, 34px);
+  }
+}
+
+/* Tablet: tres banners angostos; el detalle taparía la foto y queda para la página de la categoría */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .para-quien__detalle {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .para-quien__texto {
+    bottom: 40px;
+  }
+}
+
+@media (forced-colors: active) {
+  .para-quien__boton {
+    border-color: LinkText;
+  }
+}
